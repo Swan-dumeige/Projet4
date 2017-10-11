@@ -6,7 +6,8 @@ Ceci est un script temporaire.
 """
 
 import os
-os.chdir("C:/Users/Sylvain/Desktop/analyse_de_donnees")
+os.chdir("C:/Users/Sylvain/Projet4")
+#os.chdir("C:/Users/charpak 3.33/Desktop/tryone/Projet4") 
 
 
 def import_image_train(rank):
@@ -69,9 +70,9 @@ def import_label_train(rank):
 
 
 
-
-print (import_image_train(1))
-print (import_label_train(1))
+if __name__=="__main__":
+    print (import_image_train(1))
+    print (import_label_train(1))
         
         
         
