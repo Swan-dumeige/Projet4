@@ -5,7 +5,7 @@ Created on Wed Nov 15 09:52:38 2017
 @author: Sylvain
 """
 import uncrypting_data
-from sklearn import  svm, metrics#, datasets
+from sklearn import  svm, metrics
 import numpy as np
 from pprint import pprint
 
@@ -29,9 +29,6 @@ def sklearn_use(training_data, test_data, C = 8, gamma = 0.0000001):
     expected = test_data[1]
     predicted = classifier.predict(data_test)
     
-#    print("Classification report for classifier %s:\n%s\n"
-#          % (classifier, metrics.classification_report(expected, predicted)))
-#    print("Confusion matrix:\n%s" % metrics.confusion_matrix(expected, predicted))
 
     precision = 0
 #    print("\n\nthe confusion matrix : \n")
@@ -40,14 +37,6 @@ def sklearn_use(training_data, test_data, C = 8, gamma = 0.0000001):
         precision += max(elm)
     return (precision/100)
         
-#    
-#    images_and_predictions = list(zip(digits.images[n_samples // 2:], predicted))
-#    for index, (image, prediction) in enumerate(images_and_predictions[:4]):
-#        plt.subplot(2, 4, index + 5)
-#        plt.axis('off')
-#        plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
-#        plt.title('Prediction: %i' % prediction)
-
 
 if __name__=='__main__':
     print("1 etape")
@@ -56,11 +45,7 @@ if __name__=='__main__':
     test_data = uncrypting_data.test_data()
     print("3 etape")
     mat = []
-    for i in range(3):
-        mat2 = []
-        for j in range(10):
-            mat2.append(sklearn_use(training_data, test_data, C = 7.5+(0.5*i), gamma = 0.0000000001*(10**i)))
-            print(i, "\t", j)
-        mat.append(mat2)
-    pprint(mat)
+    print(sklearn_use(training_data, test_data, C = 8, gamma = 0.00000025))
+    print("4 etape")
+    validation_data = uncrypting_data.validation_data()
     print("fini")

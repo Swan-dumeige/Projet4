@@ -83,14 +83,14 @@ def training_data():
     file_label.close()
     
     matrix = []
-    for i in range (60000):
+    for i in range (50000):
         mat = []
         for char in data_image[(8 + (i * 784)):(8 + ((i+1) * 784))]:
             mat.append(char)
         matrix.append(mat)
         
     labels = []
-    for i in range (60000):
+    for i in range (50000):
         labels.append(data_label[8 + i])
     
     training = (matrix, labels)
@@ -162,6 +162,31 @@ def import_label_test(rank):
 
 
 def test_data():   
+    file_image = open("train-images.idx3-ubyte", "rb")
+    data_image = file_image.read()
+    file_image.close()
+    
+    file_label = open("train-labels.idx1-ubyte", "rb")
+    data_label = file_label.read()
+    file_label.close()
+
+    matrix = []
+    for i in range (50000, 60000):
+        mat = []
+        for char in data_image[(8 + (i * 784)):(8 + ((i+1) * 784))]:
+            mat.append(char)
+        matrix.append(mat)
+        
+    labels = []
+    for i in range (50000, 60000):
+        labels.append(data_label[(8 + i)])
+    
+    data_test = (matrix, labels)
+    return data_test
+
+
+
+def validation_data():   
     file_image = open("t10k-images.idx3-ubyte", "rb")
     data_image = file_image.read()
     file_image.close()
@@ -187,45 +212,8 @@ def test_data():
 
 
 
-
 if __name__=="__main__":
     print (import_image_train(0))
     print (import_linear_image_train(0))
     print (import_label_train(0))
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-#        
-#    file = open("train-images.idx3-ubyte", "rb")
-#    
-#    data = file.read()
-#    print(data[0:150])
-#    
-#    key = []
-#    
-#    #for char in data[0:120]:
-#    ##    print('{0:08b} - {0:3d} - {1:s}'.format(char, str(bytes([char]))))
-#    #    print('{0:3d}'.format(char))
-#    #    key.append('{0:3d}'.format(char))
-#        
-#    #assert key == ['  0', '  0', '  8', '  3', '  0', '  0', '234', ' 96']
-#    
-#    
-#    for i in range(8, (8 + (1 * 784)), 784):
-#        mat = []
-#        for j in range(0, 28):
-#            row = []
-#            for char in data[int(i + (28 * j)): int(i + (28 * j) + 28)]:
-#                row.append(char)
-#            mat.append(row)
-#            print(row)
-#        print((i-8)/784)
-#        next_index = input()
-#        

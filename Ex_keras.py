@@ -57,29 +57,7 @@ if __name__=="__main__":
 
     print ("\nData updated \n")
     
-    counter = 0  
+    print(use_neural_network(learning_rate= 0.5, momentum = 0.5, decay = 0.001))
     
-    print('\n ha!')
-    file = open("MONFICHIER.csv", "w")
-    c = csv.writer(file)
-    c.writerow(['learning_rate','momentum','decay', 'result'])
-    
-    print('\n ha!')
-    
-#    for i in range(0.05, 0.81, 0.05):
-#        for j in range(0, 1.05, 0.1):
-#            for k in range(-5, 0, 1):
-#                c.writerow( (  i, j, k, use_neural_network(learning_rate= i, momentum = j, decay = k)))
-#                counter += 1
-#                print(counter)
-    c.writerow([0.03, 0.5, 0.001, use_neural_network(learning_rate= 0.03, momentum = 0.5, decay = 0.001)])
-    
-    print('\n ha!')
-    
-    file.close()
-                
-                
-                
-                
-                
+           
     

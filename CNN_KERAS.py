@@ -15,17 +15,18 @@ def use_neural_network(learning_rate= 0.5, momentum = 0, decay = 0, batch_size =
     model = Sequential()
     
     #construction réseau convolutif de neurones vide
-    model.add(Conv2D(32,kernel_size=(5,5),activation='sigmoid',input_shape=(28, 28, 1),padding='same'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Conv2D(64,kernel_size=(5,5),activation='sigmoid',input_shape=(28, 28, 1),padding='same'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Conv2D(32,kernel_size=(5,5),activation='sigmoid',input_shape=(28, 28, 1),padding='same'))
     MaxPooling2D(pool_size=(2, 2))
     model.add(Flatten())
+    
     model.add(Dense(100,  input_dim=784, name='fc1'))
+    model.add(Activation('sigmoid'))
+    model.add(Dense(30,  input_dim=100, name='fc12'))
     model.add(Activation('sigmoid'))
     model.add(Dense(10,  input_dim=30, name='fc13'))
     model.add(Activation('softmax'))
-    
-    
     
     # descente de gradient stochastique (sgd), et métrique d’évaluation (accuracy):
     sgd = optimizers.SGD(learning_rate, momentum, decay)
@@ -53,37 +54,5 @@ if __name__=="__main__":
     X_test = X_test.reshape(X_test.shape[0], 28, 28, 1)
     input_shape = (28, 28, 1)
     
-    print (use_neural_network(learning_rate= 0.03, momentum = 0.5, decay = 0.001))
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-#    counter = 0  
-#
-#    file = open("MONFICHIER.csv", "w")
-#    c = csv.writer(file)
-#    c.writerow(['learning_rate','momentum','decay', 'result'])
-#
-#    
-##    for i in range(0.05, 0.81, 0.05):
-##        for j in range(0, 1.05, 0.1):
-##            for k in range(-5, 0, 1):
-##                c.writerow( (  i, j, k, use_neural_network(learning_rate= i, momentum = j, decay = k)))
-##                counter += 1
-##                print(counter)
-#    
-#    c.writerow([0.03, 0.5, 0.001, use_neural_network(learning_rate= 0.03, momentum = 0.5, decay = 0.001)])
-#    
-#    file.close()
+    print(use_neural_network(learning_rate = 1, momentum = 0.5,
+                             decay = 0.001, batch_size = 100, nb_epoch = 10))
